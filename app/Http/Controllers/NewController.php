@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class NewController extends Controller
 {
@@ -34,7 +35,19 @@ class NewController extends Controller
         return view('regForm');
     }
 
-    public function submitForm(){
-        echo "Form is submitted successfully";
+    //form validation
+    public function submitForm(Request $request){
+        // echo "Form is submitted successfully";
+        
+        $validatedEntries = $request->validate([
+            "myname" => "required|string|max:20",
+            "email" => "required|email",
+            "mobno" => "required|min:10"
+        ]);
+        // echo "After form validation in submitForm method of NewController<br><br>";
+        // echo " My name is: $request->myname<br>";
+        // echo " My email is: $request->email<br>";
+        // echo " My Mobile number is: $request->mobno"; 
+        return response()->json($validatedEntries);
     }
 }
