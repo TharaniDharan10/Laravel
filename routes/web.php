@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewController; //used by us
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Controller;
 
@@ -14,12 +15,13 @@ Route::get("/hello/{name}", [NewController::class,"returnWithParameters"]);
 Route::get("/json", [NewController::class,"index"]);
 
 //returning view from the controller, here the view was a registration form
-Route::get("/regForm", [NewController::class,"registrationForm"]);
+Route::get("/regForm", [StudentController::class,"registrationForm"]);
 
 //action taken while submitting form
-Route::post("/submitMyForm", [NewController::class,"submitForm"]);
+Route::post("/submitMyForm", action: [StudentController::class,"submitForm"]);
 
-
+//to display data from table
+Route::get("/StudentsData", action: [StudentController::class,"getStudents"]);
 
 
 Route::get('/', function () {
