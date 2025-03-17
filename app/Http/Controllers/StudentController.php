@@ -69,11 +69,16 @@ class StudentController extends Controller
     }
 
     public function getStudents(){
-        // return "Student data from dat    abase";
+        // return "Student data from database";
 
         // to connect controller with database table
         //ensure that the table you created in mysql should be of same name as model class, but in plural with 's'  
         $students = \App\Models\Student::all();
-        return $students;
+
+        // returning table rows from db through controller
+        // return $students;
+
+        //returning table rows through view
+        return view('studentDetail', ['data'=> $students]);
     }
 }

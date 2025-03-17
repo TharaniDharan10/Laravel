@@ -10,7 +10,7 @@ class Student extends Model
     use HasFactory;
 
     // Explicitly define the table name (not needed if it follows Laravel's convention)
-    protected $table = 'students';
+    protected $table = 'students';  //whatever table name we want to use must be mentioned here 
 
      // Specify which fields are mass assignable.These names should be same as column names of table
     protected $fillable = [
